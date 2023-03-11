@@ -1,4 +1,4 @@
-import { Sun, SunParameters } from "@/hook/sun"
+import { Sun, SunParameters } from "@/hooks/sun"
 import { useFrame } from "@react-three/fiber"
 import { useMemo, useRef, useState } from "react"
 

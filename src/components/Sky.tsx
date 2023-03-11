@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Sky as SkyImpl } from "@/common/Sky"
 import { ShaderMaterial } from "three"
 import { PrimitiveProps } from "@react-three/fiber"
-import { Sun } from "@/hook/sun"
+import { Sun } from "@/hooks/sun"
 
 export interface SkyProps {
   sun: Sun

@@ -1,4 +1,4 @@
-import { SunParameters, useSun } from "@/hook/sun"
+import { SunParameters, useSun } from "@/hooks/sun"
 import { Canvas } from "@react-three/fiber"
 import { Sky } from "@/components/Sky"
 import { SunAnimation } from "@/components/SunAnimation"

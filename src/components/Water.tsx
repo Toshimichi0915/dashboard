@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { PlaneGeometry, RepeatWrapping, ShaderMaterial, TextureLoader, Vector3 } from "three"
 import { Water as WaterImpl } from "@/common/Water"
 import { PrimitiveProps, useFrame } from "@react-three/fiber"
-import { Sun } from "@/hook/sun"
+import { Sun } from "@/hooks/sun"
 
 export interface WaterProps {
   sun: Sun
