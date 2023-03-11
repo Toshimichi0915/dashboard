@@ -51,7 +51,7 @@ export default function Page() {
           <main className="p-8 rounded-lg bg-black bg-opacity-50 text-white backdrop-blur-md shadow-[0_0px_4px_rgba(0,0,0,1)] w-full">
             {mainShown ? (
               <>
-                <h1 className="text-[1.8rem] mb-8 font-bold">Toshimichi</h1>
+                <h1 className="text-[1.8rem] mb-4 font-bold">Toshimichi</h1>
                 <div className="flex flex-col md:flex-row">
                   <section className="flex-1">
                     <h2 className="text-[1.5rem]">Projects</h2>
