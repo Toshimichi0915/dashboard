@@ -1,9 +1,13 @@
 import React, { useState } from "react"
-import { MathUtils, PlaneGeometry, RepeatWrapping, ShaderMaterial, TextureLoader, Vector3 } from "three"
+import { PlaneGeometry, RepeatWrapping, ShaderMaterial, TextureLoader, Vector3 } from "three"
 import { Water as WaterImpl } from "@/common/Water"
-import { useFrame } from "@react-three/fiber"
+import { PrimitiveProps, useFrame } from "@react-three/fiber"
 
-export const Water = React.forwardRef((props, ref) => {
+export interface WaterProps {
+  sun: Vector3
+}
+
+export const Water = React.forwardRef<PrimitiveProps, WaterProps>(({sun}, ref) => {
   const [water] = useState(() => {
     const waterGeometry = new PlaneGeometry(10000, 10000)
     const impl = new WaterImpl(waterGeometry, {
@@ -21,16 +25,6 @@ export const Water = React.forwardRef((props, ref) => {
     })
     const material = impl.material as ShaderMaterial
 
-    const parameters = {
-      elevation: 2,
-      azimuth: 180,
-    }
-
-    const sun = new Vector3()
-    const phi = MathUtils.degToRad(90 - parameters.elevation)
-    const theta = MathUtils.degToRad(parameters.azimuth)
-
-    sun.setFromSphericalCoords(1, phi, theta)
     material.uniforms.sunDirection.value.copy(sun).normalize()
     impl.rotation.x = -Math.PI / 2
     impl.position.y = -5
