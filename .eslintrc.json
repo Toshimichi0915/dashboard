@@ -1,0 +1,26 @@
+{
+  "extends": ["next/core-web-vitals", "airbnb", "prettier"],
+  "rules": {
+    "import/prefer-default-export": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react/no-unknown-property": [2, { "ignore": ["jsx"] }],
+    "no-param-reassign": ["error", { "props": false }]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["next/core-web-vitals", "airbnb", "airbnb-typescript", "prettier"],
+      "rules": {
+        "import/prefer-default-export": "off",
+        "react/react-in-jsx-scope": "off",
+        "react/require-default-props": "off",
+        "react/no-unknown-property": [2, { "ignore": ["jsx"] }],
+        "no-param-reassign": ["error", { "props": false }]
+      },
+      "parserOptions": {
+        "project": ["./tsconfig.json"]
+      }
+    }
+  ]
+}
