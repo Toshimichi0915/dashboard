@@ -25,7 +25,7 @@ const information = [
 function ProjectCard({ project }: { project: Project }) {
   return (
     <Link href={project.url}>
-      <div className="flex gap-4 m-4 items-center hover:text-emerald-300 transition-colors duration-150">
+      <div className="flex gap-4 mx-2 my-4 md:mx-4 items-center hover:text-emerald-300 transition-colors duration-150">
         <Image src={project.image} alt="" width={40} height={40} />
         <p className="text-[1.3rem] whitespace-nowrap">{project.name}</p>
       </div>
