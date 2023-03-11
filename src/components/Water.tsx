@@ -1,13 +1,14 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { PlaneGeometry, RepeatWrapping, ShaderMaterial, TextureLoader, Vector3 } from "three"
 import { Water as WaterImpl } from "@/common/Water"
 import { PrimitiveProps, useFrame } from "@react-three/fiber"
+import { Sun } from "@/hook/sun"
 
 export interface WaterProps {
-  sun: Vector3
+  sun: Sun
 }
 
-export const Water = React.forwardRef<PrimitiveProps, WaterProps>(({sun}, ref) => {
+export const Water = React.forwardRef<PrimitiveProps, WaterProps>(({ sun }, ref) => {
   const [water] = useState(() => {
     const waterGeometry = new PlaneGeometry(10000, 10000)
     const impl = new WaterImpl(waterGeometry, {
@@ -25,12 +26,17 @@ export const Water = React.forwardRef<PrimitiveProps, WaterProps>(({sun}, ref) =
     })
     const material = impl.material as ShaderMaterial
 
-    material.uniforms.sunDirection.value.copy(sun).normalize()
+    material.uniforms.sunDirection.value.copy(sun.position).normalize()
     impl.rotation.x = -Math.PI / 2
-    impl.position.y = -5
+    impl.position.y = -20
 
     return impl
   })
+
+  useEffect(() => {
+    const material = water.material as ShaderMaterial
+    material.uniforms.sunDirection.value.copy(sun.position).normalize()
+  }, [water.material, sun])
 
   useFrame(() => {
     const material = water.material as ShaderMaterial

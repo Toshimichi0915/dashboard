@@ -1,48 +1,57 @@
 import { Sky } from "@/components/Sky"
+import { SunAnimation } from "@/components/SunAnimation"
 import { Water } from "@/components/Water"
+import { useSun } from "@/hook/sun"
 import { Canvas } from "@react-three/fiber"
-import { Dispatch, SetStateAction, useEffect, useState } from "react"
-import { MathUtils, Vector3 } from "three/src/Three"
+import { useState } from "react"
 
-export interface SunParameters {
-  elevation: number
-  azimuth: number
+const sunHidden = {
+  elevation: -2,
+  azimuth: 160,
 }
 
-function useSun(): [Vector3, Dispatch<SetStateAction<SunParameters>>] {
-  const [sun, setSun] = useState(() => new Vector3())
-  const [parameters, setParameters] = useState(() => ({
-    elevation: 2,
-    azimuth: 180,
-  }))
-
-  useEffect(() => {
-    const phi = MathUtils.degToRad(90 - parameters.elevation)
-    const theta = MathUtils.degToRad(parameters.azimuth)
-
-    const newPos = new Vector3()
-    newPos.setFromSphericalCoords(1, phi, theta)
-    setSun(newPos)
-  }, [parameters])
-
-  return [sun, setParameters]
+const sunShown = {
+  elevation: -0.5,
+  azimuth: 160,
 }
 
 export default function Page() {
-  const [sun] = useSun()
+  const sun = useSun()
+
+  const [params, setParams] = useState(sunHidden)
 
   return (
     <main
+      className="relative"
       style={{
         width: "100dvw",
         height: "100dvh",
       }}
     >
-      <Canvas>
-        <ambientLight />
-        <Water sun={sun} />
-        <Sky sun={sun} />
-      </Canvas>
+      <div
+        className="absolute top-0 left-0 -z-10"
+        style={{
+          width: "100dvw",
+          height: "100dvh",
+        }}
+      >
+        <Canvas>
+          <SunAnimation sun={sun} params={params} />
+          <ambientLight />
+          <Water sun={sun} />
+          <Sky sun={sun} />
+        </Canvas>
+      </div>
+
+      <div
+        className="grid place-items-center"
+        style={{
+          width: "100dvw",
+          height: "100dvh",
+        }}
+      >
+        <p>Watch the sunrise</p>
+      </div>
     </main>
   )
 }
