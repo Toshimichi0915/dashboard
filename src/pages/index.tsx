@@ -82,6 +82,14 @@ export default function Page() {
               </div>
             )}
           </main>
+          <div className="flex justify-end">
+            <Link
+              href="https://github.com/Toshimichi0915/dashboard"
+              className="text-white hover:text-emerald-300 transition-colors duration-150 font-sans"
+            >
+              <p className="px-2 py-1">Source code</p>
+            </Link>
+          </div>
         </div>
       </div>
     </>
