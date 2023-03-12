@@ -8,7 +8,7 @@ const ubuntu = Ubuntu({ subsets: ["latin"], weight: "400" })
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-          <style jsx global>{`
+      <style jsx global>{`
         html {
           font-family: ${ubuntu.style.fontFamily};
         }
