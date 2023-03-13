@@ -8,7 +8,7 @@ export function World({ params }: { params: SunParameters }) {
   const sun = useSun()
 
   return (
-    <div className="fixed top-0 left-0 -z-10" style={{ width: "100dvw", height: "100dvh" }}>
+    <div className="fixed top-0 left-0 -z-10 w-screen h-screen overflow-hidden">
       <Canvas>
         <SunAnimation sun={sun} params={params} />
         <ambientLight />
