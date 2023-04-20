@@ -40,7 +40,7 @@ export default function Page() {
   return (
     <>
       <World params={params} />
-      <div className="grid place-items-center w-screen h-screen">
+      <div className="grid place-items-center w-screen h-screen overflow-hidden">
         <div className="w-5/6 lg:w-2/3 xl:w-[600px]">
           <main
             className="p-8 rounded-lg bg-black bg-opacity-50 text-white backdrop-blur-md shadow-[0_0px_4px_rgba(0,0,0,1)] w-full">
