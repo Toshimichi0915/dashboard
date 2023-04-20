@@ -1,4 +1,7 @@
-// https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Sky.js
+/*
+ * Modified version of Sky.js from Three.js
+ * https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Sky.js
+ */
 
 import { BackSide, BoxGeometry, Mesh, ShaderMaterial, UniformsUtils, Vector3 } from "three"
 

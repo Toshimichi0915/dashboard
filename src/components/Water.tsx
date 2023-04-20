@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react"
+import React, { forwardRef, useEffect, useState } from "react"
 import { PlaneGeometry, RepeatWrapping, ShaderMaterial, TextureLoader, Vector3 } from "three"
 import { Water as WaterImpl } from "@/common/Water"
 import { PrimitiveProps, useFrame } from "@react-three/fiber"
-import { Sun } from "@/hooks/sun"
 
 export interface WaterProps {
-  sun: Sun
+  sunPosition: Vector3
 }
 
-export const Water = React.forwardRef<PrimitiveProps, WaterProps>(({ sun }, ref) => {
-  const [water] = useState(() => {
+export const Water = forwardRef<PrimitiveProps, WaterProps>(function Water({ sunPosition }, ref) {
+  const [ water ] = useState(() => {
     const waterGeometry = new PlaneGeometry(10000, 10000)
     const impl = new WaterImpl(waterGeometry, {
       textureWidth: 512,
@@ -26,7 +25,7 @@ export const Water = React.forwardRef<PrimitiveProps, WaterProps>(({ sun }, ref)
     })
     const material = impl.material as ShaderMaterial
 
-    material.uniforms.sunDirection.value.copy(sun.position).normalize()
+    material.uniforms.sunDirection.value.copy(sunPosition).normalize()
     impl.rotation.x = -Math.PI / 2
     impl.position.y = -20
 
@@ -35,14 +34,13 @@ export const Water = React.forwardRef<PrimitiveProps, WaterProps>(({ sun }, ref)
 
   useEffect(() => {
     const material = water.material as ShaderMaterial
-    material.uniforms.sunDirection.value.copy(sun.position).normalize()
-  }, [water.material, sun])
+    material.uniforms.sunDirection.value.copy(sunPosition).normalize()
+  }, [ water.material, sunPosition ])
 
   useFrame(() => {
     const material = water.material as ShaderMaterial
     material.uniforms.time.value += 1.0 / 60.0
   })
 
-  // eslint-disable-next-line react/no-unknown-property
   return <primitive object={water} ref={ref} />
 })

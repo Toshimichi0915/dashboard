@@ -12,12 +12,12 @@ interface Project {
   image: string
 }
 
-const projects = [
+const projects: Project[] = [
   { name: "JMSL", url: "https://mclist.jp", image: "/jmsl.png" },
   { name: "Earth2B2T (DEAD)", url: "https://2b2t.earth", image: "/earth2b2t.png" },
 ]
 
-const information = [
+const information: Project[] = [
   { name: "GitHub", url: "https://github.com/Toshimichi0915", image: "/git.png" },
   { name: "Coconala", url: "https://coconala.com/services/883569", image: "/coconala.png" },
 ]
@@ -34,21 +34,16 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export default function Page() {
-  const [params, setParams] = useState(sunHidden)
-  const [mainShown, setMainShown] = useState(false)
+  const [ params, setParams ] = useState(sunHidden)
+  const [ mainShown, setMainShown ] = useState(false)
 
   return (
     <>
       <World params={params} />
-      <div
-        className="grid place-items-center"
-        style={{
-          width: "100dvw",
-          height: "100dvh",
-        }}
-      >
-        <div className="w-5/6 lg:w-2/3 xl:w-1/3">
-          <main className="p-8 rounded-lg bg-black bg-opacity-50 text-white backdrop-blur-md shadow-[0_0px_4px_rgba(0,0,0,1)] w-full">
+      <div className="grid place-items-center w-screen h-screen">
+        <div className="w-5/6 lg:w-2/3 xl:w-[600px]">
+          <main
+            className="p-8 rounded-lg bg-black bg-opacity-50 text-white backdrop-blur-md shadow-[0_0px_4px_rgba(0,0,0,1)] w-full">
             {mainShown ? (
               <>
                 <h1 className="text-[1.8rem] mb-4 font-bold">Toshimichi</h1>
@@ -56,7 +51,7 @@ export default function Page() {
                   <section className="flex-1">
                     <h2 className="text-[1.5rem]">Projects</h2>
                     {projects.map((project) => (
-                      <ProjectCard project={project} />
+                      <ProjectCard key={project.name} project={project} />
                     ))}
                   </section>
                   <section className="flex-1">

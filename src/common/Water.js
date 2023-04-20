@@ -1,4 +1,7 @@
-// https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Water.js
+/*
+ * Modified version of Water.js from three.js
+ * https://github.com/mrdoob/three.js/blob/master/examples/jsm/objects/Water.js
+ */
 
 import {
   Color,
@@ -27,8 +30,6 @@ class Water extends Mesh {
     super(geometry)
 
     this.isWater = true
-
-    const scope = this
 
     const textureWidth = options.textureWidth !== undefined ? options.textureWidth : 512
     const textureHeight = options.textureHeight !== undefined ? options.textureHeight : 512
@@ -205,13 +206,13 @@ class Water extends Mesh {
 
     material.uniforms.eye.value = eye
 
-    scope.material = material
+    this.material = material
 
-    scope.onBeforeRender = (renderer, scene, camera) => {
-      mirrorWorldPosition.setFromMatrixPosition(scope.matrixWorld)
+    this.onBeforeRender = (renderer, scene, camera) => {
+      mirrorWorldPosition.setFromMatrixPosition(this.matrixWorld)
       cameraWorldPosition.setFromMatrixPosition(camera.matrixWorld)
 
-      rotationMatrix.extractRotation(scope.matrixWorld)
+      rotationMatrix.extractRotation(this.matrixWorld)
 
       normal.set(0, 0, 1)
       normal.applyMatrix4(rotationMatrix)
@@ -283,7 +284,7 @@ class Water extends Mesh {
       const currentXrEnabled = renderer.xr.enabled
       const currentShadowAutoUpdate = renderer.shadowMap.autoUpdate
 
-      scope.visible = false
+      this.visible = false
 
       renderer.xr.enabled = false // Avoid camera modification and recursion
       renderer.shadowMap.autoUpdate = false // Avoid re-computing shadows
@@ -295,7 +296,7 @@ class Water extends Mesh {
       if (renderer.autoClear === false) renderer.clear()
       renderer.render(scene, mirrorCamera)
 
-      scope.visible = true
+      this.visible = true
 
       renderer.xr.enabled = currentXrEnabled
       renderer.shadowMap.autoUpdate = currentShadowAutoUpdate

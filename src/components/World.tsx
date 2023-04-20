@@ -12,8 +12,8 @@ export function World({ params }: { params: SunParameters }) {
       <Canvas>
         <SunAnimation sun={sun} params={params} />
         <ambientLight />
-        <Water sun={sun} />
-        <Sky sun={sun} />
+        <Water sunPosition={sun.position} />
+        <Sky sunPosition={sun.position} />
       </Canvas>
     </div>
   )
