@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useMemo, useState } from "react"
 import { MathUtils, Vector3 } from "three"
 
 export interface Sun {
@@ -30,8 +30,8 @@ export function useSun(): Sun {
     [ position ],
   )
 
-  return {
+  return useMemo(() => ({
     position,
     update,
-  }
+  }), [ position, update ])
 }
