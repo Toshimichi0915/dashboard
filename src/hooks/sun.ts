@@ -13,7 +13,7 @@ export interface SunParameters {
 }
 
 export function useSun(): Sun {
-  const [ position, setPosition ] = useState(() => new Vector3())
+  const [position, setPosition] = useState(() => new Vector3())
 
   const update = useCallback(
     (parameters?: SunParameters) => {
@@ -27,11 +27,14 @@ export function useSun(): Sun {
       if (position.equals(newPos)) return
       setPosition(newPos)
     },
-    [ position ],
+    [position]
   )
 
-  return useMemo(() => ({
-    position,
-    update,
-  }), [ position, update ])
+  return useMemo(
+    () => ({
+      position,
+      update,
+    }),
+    [position, update]
+  )
 }

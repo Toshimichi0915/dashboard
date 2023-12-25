@@ -5,7 +5,7 @@ import { useMemo, useRef, useState } from "react"
 const clampSteps = 120
 
 export function SunAnimation({ sun, params }: { sun: Sun; params: SunParameters }) {
-  const [ step, setStep ] = useState(clampSteps)
+  const [step, setStep] = useState(clampSteps)
 
   const paramsRef = useRef({
     value: params,
@@ -27,7 +27,7 @@ export function SunAnimation({ sun, params }: { sun: Sun; params: SunParameters 
       elevation: (params.elevation - prev.elevation) * (step / clampSteps) + prev.elevation,
       azimuth: (params.azimuth - prev.azimuth) * (step / clampSteps) + prev.azimuth,
     }),
-    [ params.azimuth, params.elevation, prev.azimuth, prev.elevation, step ],
+    [params.azimuth, params.elevation, prev.azimuth, prev.elevation, step]
   )
 
   useFrame(() => {

@@ -8,7 +8,7 @@ export interface WaterProps {
 }
 
 export const Water = forwardRef<PrimitiveProps, WaterProps>(function Water({ sunPosition }, ref) {
-  const [ water ] = useState(() => {
+  const [water] = useState(() => {
     const waterGeometry = new PlaneGeometry(10000, 10000)
     const impl = new WaterImpl(waterGeometry, {
       textureWidth: 512,
@@ -35,7 +35,7 @@ export const Water = forwardRef<PrimitiveProps, WaterProps>(function Water({ sun
   useEffect(() => {
     const material = water.material as ShaderMaterial
     material.uniforms.sunDirection.value.copy(sunPosition).normalize()
-  }, [ water.material, sunPosition ])
+  }, [water.material, sunPosition])
 
   useFrame(() => {
     const material = water.material as ShaderMaterial

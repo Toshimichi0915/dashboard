@@ -9,7 +9,7 @@ export interface SkyProps {
 }
 
 export const Sky = forwardRef<PrimitiveProps, SkyProps>(function Sky({ sunPosition, scale = 450000 }, ref) {
-  const [ sky ] = useState(() => {
+  const [sky] = useState(() => {
     const impl = new SkyImpl()
     const material = impl.material as ShaderMaterial
     const skyUniforms = material.uniforms
@@ -27,7 +27,7 @@ export const Sky = forwardRef<PrimitiveProps, SkyProps>(function Sky({ sunPositi
   useEffect(() => {
     const material = sky.material as ShaderMaterial
     material.uniforms.sunPosition.value.copy(sunPosition)
-  }, [ sky.material, sunPosition ])
+  }, [sky.material, sunPosition])
 
   return <primitive object={sky} ref={ref} scale={scale} />
 })

@@ -8,8 +8,8 @@ const sunShown = { elevation: -0.5, azimuth: 140 }
 
 interface Project {
   name: string
-  url: string
-  image: string
+  url?: string
+  image?: string
 }
 
 const projects: Project[] = [
@@ -18,15 +18,20 @@ const projects: Project[] = [
 ]
 
 const information: Project[] = [
-  { name: "GitHub", url: "https://github.com/Toshimichi0915", image: "/git.png" },
+  { name: "Blog", url: "https://blog.toshimichi.com/", image: "/blog.png" },
   { name: "Coconala", url: "https://coconala.com/services/883569", image: "/coconala.png" },
+  { name: "GitHub", url: "https://github.com/Toshimichi0915", image: "/git.png" },
 ]
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Link href={project.url}>
+    <Link href={project.url ?? ""}>
       <div className="flex gap-4 mx-2 my-4 md:mx-4 items-center hover:text-emerald-300 transition-colors duration-150">
-        <Image src={project.image} alt="" width={40} height={40} />
+        {project.image ? (
+          <Image src={project.image} alt="" width={40} height={40} />
+        ) : (
+          <div className="w-10 h-10"></div>
+        )}
         <p className="text-[1.3rem] whitespace-nowrap">{project.name}</p>
       </div>
     </Link>
@@ -34,16 +39,15 @@ function ProjectCard({ project }: { project: Project }) {
 }
 
 export default function Page() {
-  const [ params, setParams ] = useState(sunHidden)
-  const [ mainShown, setMainShown ] = useState(false)
+  const [params, setParams] = useState(sunHidden)
+  const [mainShown, setMainShown] = useState(false)
 
   return (
     <>
       <World params={params} />
       <div className="grid place-items-center w-screen h-screen overflow-hidden">
         <div className="w-5/6 lg:w-2/3 xl:w-[600px]">
-          <main
-            className="p-8 rounded-lg bg-black bg-opacity-50 text-white backdrop-blur-md shadow-[0_0px_4px_rgba(0,0,0,1)] w-full">
+          <main className="p-8 rounded-lg bg-black bg-opacity-50 text-white backdrop-blur-md shadow-[0_0px_4px_rgba(0,0,0,1)] w-full">
             {mainShown ? (
               <>
                 <h1 className="text-[1.8rem] mb-4 font-bold">Toshimichi</h1>
