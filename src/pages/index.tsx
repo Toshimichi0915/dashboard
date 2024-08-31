@@ -18,7 +18,7 @@ const projects: Project[] = [
 ]
 
 const information: Project[] = [
-  { name: "Blog", url: "https://blog.toshimichi.com/", image: "/blog.png" },
+  { name: "Blog", url: "https://blog.toshimichi.net/", image: "/blog.png" },
   { name: "Coconala", url: "https://coconala.com/services/883569", image: "/coconala.png" },
   { name: "GitHub", url: "https://github.com/Toshimichi0915", image: "/git.png" },
 ]
