@@ -28,8 +28,6 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/Sky.tsxjsx",
-    "src/components/Sky.js"
   ],
   "exclude": [
     "node_modules"

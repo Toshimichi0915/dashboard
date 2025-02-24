@@ -1,14 +1,13 @@
 import React, { forwardRef, useEffect, useState } from "react"
-import { Sky as SkyImpl } from "@/common/Sky"
+import { Sky as SkyImpl } from "@/common/Sky.mjs"
 import { ShaderMaterial, Vector3 } from "three"
-import { PrimitiveProps } from "@react-three/fiber"
 
 export interface SkyProps {
   sunPosition: Vector3
   scale?: number
 }
 
-export const Sky = forwardRef<PrimitiveProps, SkyProps>(function Sky({ sunPosition, scale = 450000 }, ref) {
+export const Sky = forwardRef<unknown, SkyProps>(function Sky({ sunPosition, scale = 450000 }, ref) {
   const [sky] = useState(() => {
     const impl = new SkyImpl()
     const material = impl.material as ShaderMaterial

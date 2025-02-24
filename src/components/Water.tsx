@@ -1,13 +1,13 @@
 import React, { forwardRef, useEffect, useState } from "react"
 import { PlaneGeometry, RepeatWrapping, ShaderMaterial, TextureLoader, Vector3 } from "three"
-import { Water as WaterImpl } from "@/common/Water"
-import { PrimitiveProps, useFrame } from "@react-three/fiber"
+import { Water as WaterImpl } from "@/common/Water.mjs"
+import { useFrame } from "@react-three/fiber"
 
 export interface WaterProps {
   sunPosition: Vector3
 }
 
-export const Water = forwardRef<PrimitiveProps, WaterProps>(function Water({ sunPosition }, ref) {
+export const Water = forwardRef<unknown, WaterProps>(function Water({ sunPosition }, ref) {
   const [water] = useState(() => {
     const waterGeometry = new PlaneGeometry(10000, 10000)
     const impl = new WaterImpl(waterGeometry, {

@@ -164,7 +164,7 @@ Sky.SkyShader = {
 			vec3 retColor = pow( texColor, vec3( 1.0 / ( 1.2 + ( 1.2 * vSunfade ) ) ) );
 			gl_FragColor = vec4( retColor, 1.0 );
 			#include <tonemapping_fragment>
-			#include <encodings_fragment>
+			#include <colorspace_fragment>
 		}`,
 }
 

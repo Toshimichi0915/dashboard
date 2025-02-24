@@ -47,7 +47,7 @@ export default function Page() {
       <World params={params} />
       <div className="grid place-items-center w-screen h-screen overflow-hidden">
         <div className="w-5/6 lg:w-2/3 xl:w-[600px]">
-          <main className="p-8 rounded-lg bg-black bg-opacity-50 text-white backdrop-blur-md shadow-[0_0px_4px_rgba(0,0,0,1)] w-full">
+          <main className="p-8 rounded-lg bg-black/50 text-white backdrop-blur-md shadow-[0_0px_4px_rgba(0,0,0,1)] w-full">
             {mainShown ? (
               <>
                 <h1 className="text-[1.8rem] mb-4 font-bold">Toshimichi</h1>
