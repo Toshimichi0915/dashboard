@@ -47,7 +47,7 @@ const archives: Archive[] = [
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Link href={project.url ?? ""}>
+    <Link href={project.url ?? ""} target="_blank">
       <div className="flex gap-4 mx-2 my-4 md:mx-4 items-center hover:text-emerald-300 transition-colors duration-150">
         {project.image ? (
           <Image src={project.image} alt="" width={40} height={40} />
@@ -62,7 +62,7 @@ function ProjectCard({ project }: { project: Project }) {
 
 function ArchiveCard({ archive }: { archive: Archive }) {
   return (
-    <Link href={archive.url ?? ""}>
+    <Link href={archive.url ?? ""} target="_blank">
       <div className="flex gap-4 mx-2 my-4 md:mx-4 items-center">
         <div className="flex gap-4 flex-1 items-center hover:text-emerald-300  transition-colors duration-150">
           <Image src="/public.svg" alt="" width={40} height={40} />
@@ -71,7 +71,7 @@ function ArchiveCard({ archive }: { archive: Archive }) {
             <p className="text-[0.9rem]">{archive.description}</p>
           </div>
         </div>
-        <Link href={archive.repoUrl}>
+        <Link href={archive.repoUrl} target="_blank">
           <p className="text-[0.9rem] hover:text-emerald-300 transition-colors duration-150">Source Code</p>
         </Link>
       </div>
@@ -131,6 +131,7 @@ export default function Page() {
           <div className="flex justify-end">
             <Link
               href="https://github.com/Toshimichi0915/dashboard"
+              target="_blank"
               className="text-white hover:text-emerald-300 transition-colors duration-150 font-sans"
             >
               <p className="px-2 py-1">Source code</p>
