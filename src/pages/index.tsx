@@ -62,12 +62,12 @@ function ArchiveCard({ archive }: { archive: Archive }) {
       <div className="flex gap-4 mx-2 my-4 md:mx-4 items-center relative">
         <div className="flex gap-4 flex-1 items-center hover:text-emerald-300  transition-colors duration-150">
           <Image src="/public.svg" alt="" width={40} height={40} />
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col mb-6 sm:mb-0">
             <p className="text-[1.3rem]">{archive.name}</p>
             <p className="text-[0.9rem]">{archive.description}</p>
           </div>
         </div>
-        <Link href={archive.repoUrl} target="_blank" className="absolute top-[0.375rem] right-10">
+        <Link href={archive.repoUrl} target="_blank" className="absolute bottom-0 sm:top-[0.375rem] right-0">
           <p className="text-[0.9rem] text-white hover:text-emerald-300 transition-colors duration-150">Source Code</p>
         </Link>
       </div>
@@ -82,7 +82,7 @@ export default function Page() {
   return (
     <>
       <World params={params} />
-      <div className="grid place-items-center w-screen h-screen overflow-hidden">
+      <div className="grid place-items-center w-screen min-h-screen overflow-hidden">
         <div className="w-5/6 lg:w-[600px]">
           <main className="p-8 rounded-lg bg-black/50 text-white backdrop-blur-md shadow-[0_0px_4px_rgba(0,0,0,1)] w-full">
             {mainShown ? (
