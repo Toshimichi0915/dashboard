@@ -8,15 +8,15 @@ const sunShown = { elevation: -0.5, azimuth: 140 }
 
 interface Project {
   name: string
-  url?: string
-  image?: string
+  url: string
+  image: string
 }
 
 interface Archive {
   name: string
   description: string
   repoUrl: string
-  url?: string
+  url: string
 }
 
 const projects: Project[] = [
@@ -47,13 +47,9 @@ const archives: Archive[] = [
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <Link href={project.url ?? ""} target="_blank">
+    <Link href={project.url} target="_blank">
       <div className="flex gap-4 mx-2 my-4 md:mx-4 items-center hover:text-emerald-300 transition-colors duration-150">
-        {project.image ? (
-          <Image src={project.image} alt="" width={40} height={40} />
-        ) : (
-          <div className="w-10 h-10"></div>
-        )}
+        <Image src={project.image} alt="" width={40} height={40} />
         <p className="text-[1.3rem] whitespace-nowrap">{project.name}</p>
       </div>
     </Link>
@@ -62,8 +58,8 @@ function ProjectCard({ project }: { project: Project }) {
 
 function ArchiveCard({ archive }: { archive: Archive }) {
   return (
-    <Link href={archive.url ?? ""} target="_blank">
-      <div className="flex gap-4 mx-2 my-4 md:mx-4 items-center">
+    <Link href={archive.url} target="_blank">
+      <div className="flex gap-4 mx-2 my-4 md:mx-4 items-center relative">
         <div className="flex gap-4 flex-1 items-center hover:text-emerald-300  transition-colors duration-150">
           <Image src="/public.svg" alt="" width={40} height={40} />
           <div className="flex-1 flex flex-col">
@@ -71,8 +67,8 @@ function ArchiveCard({ archive }: { archive: Archive }) {
             <p className="text-[0.9rem]">{archive.description}</p>
           </div>
         </div>
-        <Link href={archive.repoUrl} target="_blank">
-          <p className="text-[0.9rem] hover:text-emerald-300 transition-colors duration-150">Source Code</p>
+        <Link href={archive.repoUrl} target="_blank" className="absolute top-[0.375rem] right-10">
+          <p className="text-[0.9rem] text-white hover:text-emerald-300 transition-colors duration-150">Source Code</p>
         </Link>
       </div>
     </Link>
@@ -105,7 +101,7 @@ export default function Page() {
                       <ProjectCard project={project} key={project.name} />
                     ))}
                   </section>
-                  <section className="col-span-2">
+                  <section className="col-span-1 md:col-span-2">
                     <h2 className="text-[1.5rem]">Archives</h2>
                     {archives.map((archive) => (
                       <ArchiveCard archive={archive} key={archive.name} />
